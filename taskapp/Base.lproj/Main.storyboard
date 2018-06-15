@@ -48,6 +48,25 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="INf-Fw-lPt">
+                                <rect key="frame" x="301" y="617" width="64" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Research"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Category Research" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gyl-nb-djE">
+                                <rect key="frame" x="10" y="677" width="146" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="m62-MV-deb">
+                                <rect key="frame" x="10" y="617" width="234" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -82,13 +101,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MdB-Sk-ecj">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="タイトル" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MdB-Sk-ecj">
                                 <rect key="frame" x="10" y="74" width="355" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h63-EB-I20">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="内容" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h63-EB-I20">
                                 <rect key="frame" x="10" y="145" width="355" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -119,19 +138,36 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="カテゴリー" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mml-Ay-YTB">
+                                <rect key="frame" x="10" y="456" width="87" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oqP-bQ-2Fz">
+                                <rect key="frame" x="10" y="487" width="355" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="MdB-Sk-ecj" firstAttribute="top" secondItem="CPT-KX-Dbi" secondAttribute="top" constant="10" id="3CS-Ct-vRP"/>
+                            <constraint firstItem="Mml-Ay-YTB" firstAttribute="top" secondItem="0dn-Sk-bbf" secondAttribute="bottom" constant="30" id="5jr-Si-sL9"/>
                             <constraint firstItem="CPT-KX-Dbi" firstAttribute="trailing" secondItem="0dn-Sk-bbf" secondAttribute="trailing" id="7wn-Ol-XVe"/>
+                            <constraint firstItem="oqP-bQ-2Fz" firstAttribute="leading" secondItem="CPT-KX-Dbi" secondAttribute="leading" constant="10" id="B5f-Ll-sWR"/>
                             <constraint firstItem="h63-EB-I20" firstAttribute="leading" secondItem="CPT-KX-Dbi" secondAttribute="leading" constant="10" id="CRG-4x-qIz"/>
                             <constraint firstItem="3yb-HE-mj9" firstAttribute="top" secondItem="MdB-Sk-ecj" secondAttribute="bottom" constant="10" id="EPb-M7-l4b"/>
                             <constraint firstItem="0dn-Sk-bbf" firstAttribute="leading" secondItem="CPT-KX-Dbi" secondAttribute="leading" id="FQq-XK-3kJ"/>
                             <constraint firstItem="CPT-KX-Dbi" firstAttribute="trailing" secondItem="h63-EB-I20" secondAttribute="trailing" constant="10" id="PdG-7f-sXL"/>
+                            <constraint firstItem="oqP-bQ-2Fz" firstAttribute="top" secondItem="Mml-Ay-YTB" secondAttribute="bottom" constant="10" id="RlX-tX-LxO"/>
                             <constraint firstItem="3yb-HE-mj9" firstAttribute="leading" secondItem="CPT-KX-Dbi" secondAttribute="leading" constant="10" id="Tgp-i6-742"/>
+                            <constraint firstItem="CPT-KX-Dbi" firstAttribute="trailing" secondItem="oqP-bQ-2Fz" secondAttribute="trailing" constant="10" id="Up9-m5-vLI"/>
                             <constraint firstItem="uUG-cE-URb" firstAttribute="leading" secondItem="CPT-KX-Dbi" secondAttribute="leading" constant="10" id="W6U-ni-hxF"/>
                             <constraint firstItem="MdB-Sk-ecj" firstAttribute="leading" secondItem="CPT-KX-Dbi" secondAttribute="leading" constant="10" id="YXX-jS-QCQ"/>
                             <constraint firstItem="0dn-Sk-bbf" firstAttribute="top" secondItem="uUG-cE-URb" secondAttribute="bottom" constant="10" id="cDh-Wx-Dyw"/>
+                            <constraint firstItem="Mml-Ay-YTB" firstAttribute="leading" secondItem="CPT-KX-Dbi" secondAttribute="leading" constant="10" id="exO-re-e8e"/>
                             <constraint firstItem="CPT-KX-Dbi" firstAttribute="trailing" secondItem="uUG-cE-URb" secondAttribute="trailing" constant="10" id="jXv-vM-cMK"/>
                             <constraint firstItem="CPT-KX-Dbi" firstAttribute="trailing" secondItem="3yb-HE-mj9" secondAttribute="trailing" constant="10" id="pLp-Wt-aTn"/>
                             <constraint firstItem="uUG-cE-URb" firstAttribute="top" secondItem="h63-EB-I20" secondAttribute="bottom" constant="10" id="pnr-CY-YWv"/>
@@ -141,6 +177,7 @@
                         <viewLayoutGuide key="safeArea" id="CPT-KX-Dbi"/>
                     </view>
                     <connections>
+                        <outlet property="category" destination="oqP-bQ-2Fz" id="KF0-KD-jKm"/>
                         <outlet property="contentsTextView" destination="uUG-cE-URb" id="Alg-u1-e8l"/>
                         <outlet property="datePicker" destination="0dn-Sk-bbf" id="PSM-9p-HB5"/>
                         <outlet property="titleTextField" destination="3yb-HE-mj9" id="XkZ-hI-EXd"/>

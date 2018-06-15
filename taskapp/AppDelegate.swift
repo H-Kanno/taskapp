@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import UserNotifications
+import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
@@ -25,6 +26,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             // Enable or disable features based on authorization
         }
         center.delegate = self;     // 追加
+        
+        // Realmインスタンスを取得する
+        // Realmのマイグレーション処理も行う。
+        let realm1 = try! Realm(configuration: Realm.Configuration(deleteRealmIfMigrationNeeded: true))
+
         
         return true
     }

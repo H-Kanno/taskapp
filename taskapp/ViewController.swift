@@ -13,15 +13,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     // storyboard変数
     @IBOutlet weak var tableView01: UITableView!
-    
-    // Realmインスタンスを取得する
-    let realm = try! Realm()
-    
+
     // DB内のタスクが格納されるリスト。
+    let realm = try! Realm()
+
     // 日付近い順\順でソート：降順
     // 以降内容をアップデートするとリスト内は自動的に更新される。
     var taskArray = try! Realm().objects(Task.self).sorted(byKeyPath: "date", ascending: false)
-    
     
     
     
