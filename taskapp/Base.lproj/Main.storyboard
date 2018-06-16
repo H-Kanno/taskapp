@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LlW-rF-qmY">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="609"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="8Yi-W9-an0" detailTextLabel="XSM-bg-mqr" style="IBUITableViewCellStyleSubtitle" id="zUQ-6y-sdc">
@@ -48,9 +48,12 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="INf-Fw-lPt">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="INf-Fw-lPt">
                                 <rect key="frame" x="301" y="617" width="64" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="64" id="XV7-S5-Zkl"/>
+                                    <constraint firstAttribute="height" constant="30" id="nxu-Gi-510"/>
+                                </constraints>
                                 <state key="normal" title="Research"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Category Research" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gyl-nb-djE">
@@ -60,9 +63,11 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="m62-MV-deb">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="m62-MV-deb">
                                 <rect key="frame" x="10" y="617" width="234" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="BB9-Xa-dwJ"/>
+                                </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -70,10 +75,15 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="LlW-rF-qmY" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="9QT-ci-Dm2"/>
-                            <constraint firstItem="LlW-rF-qmY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="avs-YR-C7z"/>
-                            <constraint firstItem="LlW-rF-qmY" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="qY6-NC-1Dm"/>
-                            <constraint firstItem="LlW-rF-qmY" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="tao-ni-sbt"/>
+                            <constraint firstItem="INf-Fw-lPt" firstAttribute="top" secondItem="LlW-rF-qmY" secondAttribute="bottom" constant="8" id="42n-Fj-xcJ"/>
+                            <constraint firstItem="INf-Fw-lPt" firstAttribute="leading" secondItem="m62-MV-deb" secondAttribute="trailing" constant="57" id="BGe-sD-Pq2"/>
+                            <constraint firstItem="m62-MV-deb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="Kvf-iA-cIz"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="INf-Fw-lPt" secondAttribute="bottom" constant="20" id="URN-uq-ngO"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="m62-MV-deb" secondAttribute="bottom" constant="20" id="YU7-8Q-QJ7"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="INf-Fw-lPt" secondAttribute="trailing" constant="10" id="cyb-TB-rLv"/>
+                            <constraint firstItem="LlW-rF-qmY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="nFk-fS-gZw"/>
+                            <constraint firstItem="LlW-rF-qmY" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="oXr-O3-1jL"/>
+                            <constraint firstItem="LlW-rF-qmY" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="wNj-bM-YBv"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
