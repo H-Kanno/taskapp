@@ -29,8 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         // Realmインスタンスを取得する
         // Realmのマイグレーション処理も行う。
-        let realm1 = try! Realm(configuration: Realm.Configuration(deleteRealmIfMigrationNeeded: true))
-
+        _ = try! Realm(configuration: Realm.Configuration(deleteRealmIfMigrationNeeded: true))
+        
         
         return true
     }

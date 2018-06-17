@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 import UserNotifications
 
-class InputViewController: UIViewController {
+class InputViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
     
     // storyboard変数
     @IBOutlet weak var titleTextField: UITextField!
@@ -35,13 +35,27 @@ class InputViewController: UIViewController {
         titleTextField.text = task.title
         contentsTextView.text = task.contents
         datePicker.date = task.date
+        category.text = task.category
+        
+        // デリゲート設定
+        titleTextField.delegate = self
+        contentsTextView.delegate = self
+        category.delegate = self
+        
     }
     
     @objc func dismissKeyboard(){
         // キーボードを閉じる
         view.endEditing(true)
-        
     }
+    
+    // キーボードの「完了」が押された際にキーボードを閉じる。
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        view.endEditing(true)
+        return true
+    }
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -62,6 +76,10 @@ class InputViewController: UIViewController {
         
         super.viewWillDisappear(animated)
     }
+    
+    
+    
+    
     
     
     
@@ -104,5 +122,6 @@ class InputViewController: UIViewController {
             }
         }
     }
+
     
 }

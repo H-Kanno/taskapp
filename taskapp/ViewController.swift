@@ -9,11 +9,12 @@
 import UIKit
 import RealmSwift
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
     // storyboard変数
     @IBOutlet weak var tableView01: UITableView!
-
+    @IBOutlet weak var searchBar01: UISearchBar!
+    
     // DB内のタスクが格納されるリスト。
     let realm = try! Realm()
 
@@ -29,6 +30,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         tableView01.delegate = self
         tableView01.dataSource = self
+        
+        searchBar01.delegate = self
+        searchBar01.enablesReturnKeyAutomatically = false
     }
 
     override func didReceiveMemoryWarning() {
@@ -113,8 +117,26 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
+
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text == "" {
+            taskArray = try! Realm().objects(Task.self).sorted(byKeyPath: "date", ascending: false)
+            
+            tableView01.reloadData()
+        }
+        else {
+            let nsPredicate01: NSPredicate = NSPredicate( format: "category CONTAINS %@", searchBar.text! )
+            taskArray = try! Realm().objects(Task.self).sorted(byKeyPath: "date", ascending: false).filter(nsPredicate01)
+            
+            tableView01.reloadData()
+        }
+    }
     
     
+    // 遷移先から戻ってくるときの処理
+    @IBAction func unwind(_ segue: UIStoryboardSegue) {
+    }
     
     
     
