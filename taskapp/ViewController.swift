@@ -9,18 +9,22 @@
 import UIKit
 import RealmSwift
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
 
     // storyboard変数
     @IBOutlet weak var tableView01: UITableView!
-    @IBOutlet weak var searchBar01: UISearchBar!
+    @IBOutlet weak var searchPicker01: UIPickerView!
     
     // DB内のタスクが格納されるリスト。
     let realm = try! Realm()
+    let category = Category()
 
     // 日付近い順\順でソート：降順
     // 以降内容をアップデートするとリスト内は自動的に更新される。
     var taskArray = try! Realm().objects(Task.self).sorted(byKeyPath: "date", ascending: false)
+    var allCategory = try! Realm().objects(Category.self).sorted(byKeyPath: "id")
+    
+    
     
     
     
@@ -31,8 +35,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView01.delegate = self
         tableView01.dataSource = self
         
-        searchBar01.delegate = self
-        searchBar01.enablesReturnKeyAutomatically = false
+        searchPicker01.delegate = self
+        searchPicker01.dataSource = self
+        
+        try! realm.write {
+            self.category.id = 0
+            self.category.category = ""
+            self.realm.add(self.category, update: true)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -44,6 +54,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView01.reloadData()
+        searchPicker01.reloadAllComponents()
     }
 
     
@@ -95,6 +106,32 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
 
+
+    
+    // category Pickerの設定
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return allCategory.count
+    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return allCategory[row].category
+    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        let tmpCategoryId = allCategory[row].id
+        
+        if tmpCategoryId == 0 {
+            taskArray = try! Realm().objects(Task.self).sorted(byKeyPath: "date", ascending: false)
+        }
+        else {
+            let nsPredicate01: NSPredicate = NSPredicate( format: "categoryId == \(tmpCategoryId)" )
+            taskArray = try! Realm().objects(Task.self).sorted(byKeyPath: "date", ascending: false).filter(nsPredicate01)
+        }
+        
+        tableView01.reloadData()
+    }
+    
     
     
     // segue で画面遷移するに呼ばれる
@@ -118,11 +155,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
 
-    
+    // serchBarでの検索
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchBar.text == "" {
             taskArray = try! Realm().objects(Task.self).sorted(byKeyPath: "date", ascending: false)
-            
             tableView01.reloadData()
         }
         else {

@@ -10,17 +10,24 @@ import UIKit
 import RealmSwift
 import UserNotifications
 
-class InputViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
+class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
     // storyboard変数
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var contentsTextView: UITextView!
     @IBOutlet weak var datePicker: UIDatePicker!
-    @IBOutlet weak var category: UITextField!
+    @IBOutlet weak var categoryPicker: UIPickerView!
+    
     
     // その他変数
     var task: Task!
+    var category: Category!
     let realm = try! Realm()
+    var tmpCategory: Int!
+    
+    
+    // テーブルの読み込み
+    var allCategory = try! Realm().objects(Category.self).sorted(byKeyPath: "id")
     
     
     override func viewDidLoad() {
@@ -35,13 +42,11 @@ class InputViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         titleTextField.text = task.title
         contentsTextView.text = task.contents
         datePicker.date = task.date
-        category.text = task.category
         
         // デリゲート設定
         titleTextField.delegate = self
-        contentsTextView.delegate = self
-        category.delegate = self
-        
+        categoryPicker.delegate = self
+        categoryPicker.dataSource = self
     }
     
     @objc func dismissKeyboard(){
@@ -64,11 +69,14 @@ class InputViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     
     
     override func viewWillDisappear(_ animated: Bool) {
+        
         try! realm.write {
             self.task.title = self.titleTextField.text!
             self.task.contents = self.contentsTextView.text!
             self.task.date = self.datePicker.date
-            self.task.category = self.category.text!
+            if allCategory.count != 0 {
+                self.task.categoryId = allCategory[tmpCategory].id
+            }
             self.realm.add(self.task, update: true)
         }
         
@@ -78,7 +86,11 @@ class InputViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     }
     
     
-    
+    override func viewWillAppear(_ animated: Bool) {
+        categoryPicker.reloadAllComponents()
+        
+        super.viewWillAppear(animated)
+    }
     
     
     
@@ -123,5 +135,34 @@ class InputViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         }
     }
 
+
+    
+    
+    
+    
+    // UIPickerViewの列数設定
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    // UIPickerViewの行数設定
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return allCategory.count
+    }
+    
+    // UIPickerViewの要素設定
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        tmpCategory = row
+        return allCategory[row].category
+    }
+    
+    
+    
+    
+    // 遷移先から戻ってくるときの処理
+    @IBAction func unwind(_ segue: UIStoryboardSegue) {
+    }
+    
+    
     
 }
