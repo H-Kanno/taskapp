@@ -115,7 +115,6 @@
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="uUG-cE-URb">
                                 <rect key="frame" x="10" y="186" width="355" height="120"/>
-                                <color key="backgroundColor" red="0.94955808101335393" green="1" blue="0.95888504476904202" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="120" id="WWw-4c-9RZ"/>
                                 </constraints>
@@ -289,7 +288,6 @@
         <!--Navigation Controller-->
         <scene sceneID="PNx-TY-DjX">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="waq-Fh-t4f" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="s9X-86-72P" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="AVf-TF-xCn">
@@ -301,6 +299,7 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="J6l-8b-not"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="waq-Fh-t4f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-18.399999999999999" y="-6.746626686656672"/>
         </scene>
