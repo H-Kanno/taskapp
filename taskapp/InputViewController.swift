@@ -23,7 +23,6 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
     var task: Task!
     var category: Category!
     let realm = try! Realm()
-    var tmpCategory: Int!
     
     
     // テーブルの読み込み
@@ -43,10 +42,13 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
         contentsTextView.text = task.contents
         datePicker.date = task.date
         
+
+        
         // デリゲート設定
         titleTextField.delegate = self
         categoryPicker.delegate = self
         categoryPicker.dataSource = self
+        
     }
     
     @objc func dismissKeyboard(){
@@ -68,6 +70,7 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
     }
     
     
+    
     override func viewWillDisappear(_ animated: Bool) {
         
         try! realm.write {
@@ -75,7 +78,8 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
             self.task.contents = self.contentsTextView.text!
             self.task.date = self.datePicker.date
             if allCategory.count != 0 {
-                self.task.categoryId = allCategory[tmpCategory].id
+                let row = categoryPicker.selectedRow(inComponent: 0)
+                self.task.categoryId = allCategory[row].id
             }
             self.realm.add(self.task, update: true)
         }
@@ -87,9 +91,11 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
     
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        categoryPicker.selectRow(task.categoryId, inComponent: 0, animated: false)
         categoryPicker.reloadAllComponents()
         
-        super.viewWillAppear(animated)
     }
     
     
@@ -152,7 +158,6 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
     
     // UIPickerViewの要素設定
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        tmpCategory = row
         return allCategory[row].category
     }
     
